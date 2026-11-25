@@ -1,9 +1,11 @@
 import React from 'react';
 import { LanguageProvider } from '@/context/LanguageProvider';
+import { AudioProvider } from '@/context/AudioProvider';
 import { usePortfolio } from '@/hooks/usePortfolio';
 import { CalmHeader } from '@/components/layout/CalmHeader';
 import { CalmFooter } from '@/components/layout/CalmFooter';
 import { MobileTabBar } from '@/components/layout/MobileTabBar';
+import { FloatingAudioPill } from '@/components/calm/FloatingAudioPill';
 import { WorkPage } from '@/pages/WorkPage';
 import { AboutPage } from '@/pages/AboutPage';
 import { ContactPage } from '@/pages/ContactPage';
@@ -26,6 +28,9 @@ const MainContent: React.FC = () => {
         </div>
       </main>
 
+      {/* Floating Audio Control Pill */}
+      <FloatingAudioPill />
+
       {/* Calm Footer */}
       <CalmFooter />
 
@@ -39,7 +44,9 @@ export function App() {
   return (
     <ErrorBoundary>
       <LanguageProvider>
-        <MainContent />
+        <AudioProvider>
+          <MainContent />
+        </AudioProvider>
       </LanguageProvider>
     </ErrorBoundary>
   );
