@@ -62,7 +62,7 @@ export const AudioPlayerWidget: React.FC = () => {
       {/* Recessed Audio Controller Area */}
       <div className="neumorph-inset flex flex-col gap-3 rounded-2xl bg-surface-container-low/70 p-4">
         {/* Animated Waveform Visualizer */}
-        <div className="flex h-14 w-full items-end justify-between gap-1.5 px-2 pt-2">
+        <div className="flex h-14 w-full items-end justify-between gap-1.5 overflow-hidden px-2 pt-2">
           {waveformHeights.map((h, i) => {
             const isFilled = (i / waveformHeights.length) * 100 <= progress;
             return (
@@ -76,7 +76,7 @@ export const AudioPlayerWidget: React.FC = () => {
                     : 'bg-outline-variant/40'
                 }`}
                 style={{
-                  height: `${isPlaying ? Math.max(15, h * (0.8 + Math.random() * 0.4)) : h}%`,
+                  height: `${isPlaying ? Math.min(100, Math.max(15, h * (0.8 + Math.random() * 0.35))) : h}%`,
                 }}
               />
             );
