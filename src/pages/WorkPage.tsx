@@ -2,7 +2,6 @@ import React, { useState, useMemo, useRef } from 'react';
 import { usePortfolio } from '@/hooks/usePortfolio';
 import { PORTFOLIO_PROJECTS, FILM_REEL_ITEMS } from '@/data/portfolioData';
 import type { Project, ProjectCategory } from '@/types/portfolio';
-import { AudioPlayerWidget } from '@/components/calm/AudioPlayerWidget';
 import { ProjectDetailModal } from '@/components/calm/ProjectDetailModal';
 import { useDebounce } from '@/hooks/useDebounce';
 
@@ -309,125 +308,122 @@ export const WorkPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. Tactile Bento Control Suite: Sound & Atmosphere Study + Calibration Module */}
-      <section className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8">
-        {/* Left: Tactile Sound Study Player */}
-        <div className="lg:col-span-7">
-          <AudioPlayerWidget />
-        </div>
-
-        {/* Right: Studio Philosophy & Calibration Controls */}
-        <div className="flex flex-col justify-between gap-6 lg:col-span-5">
-          {/* Notification Badge */}
-          <div className="neumorph-card flex items-center justify-between gap-4 rounded-3xl bg-surface p-5 sm:p-6">
-            <div className="flex items-center gap-3.5">
-              <div className="neumorph-card-subtle flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-secondary-fixed text-primary-container">
-                <span className="material-symbols-outlined text-[24px]">check</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-lg font-bold leading-tight text-primary">
-                  {language === 'vi'
-                    ? 'Mở lịch cộng tác Q3 • Q4'
-                    : 'Open for Collaboration Q3 • Q4'}
-                </span>
-                <span className="mt-0.5 text-xs text-on-surface-variant">
-                  {language === 'vi'
-                    ? 'Tiếp nhận dự án điện ảnh & chiến dịch quảng cáo tĩnh tại.'
-                    : 'Accepting narrative feature films & commercial campaigns.'}
-                </span>
-              </div>
+      {/* 5. Tactile Bento Control Suite: Studio Philosophy & Calibration Module */}
+      <section className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {/* Left: Collaboration Status Card */}
+        <div className="neumorph-card flex flex-col justify-between gap-6 rounded-3xl bg-surface p-6 sm:p-8">
+          <div className="flex items-start gap-4">
+            <div className="neumorph-card-subtle flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-secondary-fixed text-primary-container">
+              <span className="material-symbols-outlined text-[28px]">check</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-serif text-xl font-bold leading-tight text-primary">
+                {language === 'vi' ? 'Mở lịch cộng tác Q3 • Q4' : 'Open for Collaboration Q3 • Q4'}
+              </span>
+              <span className="mt-1.5 text-xs leading-relaxed text-on-surface-variant">
+                {language === 'vi'
+                  ? 'Tiếp nhận dự án điện ảnh, phim tài liệu nghệ thuật & chiến dịch thương hiệu tĩnh tại.'
+                  : 'Accepting narrative feature films, artistic documentaries & selective brand campaigns.'}
+              </span>
             </div>
           </div>
 
-          {/* Calibration Switches & Search Field */}
-          <div className="neumorph-card flex flex-col gap-4 rounded-3xl bg-surface p-5 sm:p-6">
-            <div className="flex items-center justify-between border-b border-surface-dim/30 pb-3">
-              <span className="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
-                {language === 'vi' ? 'Hiệu chuẩn không gian phòng Lab' : 'Studio Lab Calibration'}
+          <div className="flex items-center justify-between border-t border-surface-dim/30 pt-4 text-xs text-on-surface-variant">
+            <span>
+              {language === 'vi' ? 'Tiêu chuẩn DCI-P3 / Rec.709' : 'DCI-P3 / Rec.709 Mastered'}
+            </span>
+            <span className="font-mono font-semibold text-primary">ΔE &lt; 0.8</span>
+          </div>
+        </div>
+
+        {/* Right: Calibration Switches & Search Field */}
+        <div className="neumorph-card flex flex-col justify-between gap-4 rounded-3xl bg-surface p-6 sm:p-8">
+          <div className="flex items-center justify-between border-b border-surface-dim/30 pb-3">
+            <span className="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
+              {language === 'vi' ? 'Hiệu chuẩn không gian phòng Lab' : 'Studio Lab Calibration'}
+            </span>
+            <span className="material-symbols-outlined text-[18px] text-primary-container">
+              tune
+            </span>
+          </div>
+
+          {/* Switch 1: Natural daylight balance */}
+          <div className="flex items-center justify-between py-1">
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-primary">
+                {language === 'vi' ? 'Ánh sáng tự nhiên 6500K' : 'Natural Daylight 6500K'}
               </span>
-              <span className="material-symbols-outlined text-[18px] text-primary-container">
-                tune
+              <span className="text-xs text-on-surface-variant">
+                {language === 'vi' ? 'Bù trừ quang sai mắt người' : 'Human chromatic adaptation'}
               </span>
             </div>
-
-            {/* Switch 1: Natural daylight balance */}
-            <div className="flex items-center justify-between py-1">
-              <div className="flex flex-col">
-                <span className="text-sm font-semibold text-primary">
-                  {language === 'vi' ? 'Ánh sáng tự nhiên 6500K' : 'Natural Daylight 6500K'}
-                </span>
-                <span className="text-xs text-on-surface-variant">
-                  {language === 'vi' ? 'Bù trừ quang sai mắt người' : 'Human chromatic adaptation'}
-                </span>
-              </div>
-              <button
-                type="button"
-                onClick={() => setDaylightBalance(!daylightBalance)}
-                className={`neumorph-inset h-8 w-14 cursor-pointer rounded-full p-1 transition-colors ${
-                  daylightBalance ? 'bg-primary-container' : 'bg-surface-container-high'
+            <button
+              type="button"
+              onClick={() => setDaylightBalance(!daylightBalance)}
+              className={`neumorph-inset h-8 w-14 cursor-pointer rounded-full p-1 transition-colors ${
+                daylightBalance ? 'bg-primary-container' : 'bg-surface-container-high'
+              }`}
+              aria-label="Chuyển đổi ánh sáng 6500K"
+            >
+              <div
+                className={`h-6 w-6 rounded-full bg-surface shadow-md transition-transform duration-200 ${
+                  daylightBalance ? 'translate-x-6' : 'translate-x-0'
                 }`}
-                aria-label="Chuyển đổi ánh sáng 6500K"
-              >
-                <div
-                  className={`h-6 w-6 rounded-full bg-surface shadow-md transition-transform duration-200 ${
-                    daylightBalance ? 'translate-x-6' : 'translate-x-0'
-                  }`}
-                />
-              </button>
-            </div>
+              />
+            </button>
+          </div>
 
-            {/* Switch 2: 35mm Grain Simulation */}
-            <div className="flex items-center justify-between py-1">
-              <div className="flex flex-col">
-                <span className="text-sm font-semibold text-primary">
-                  {language === 'vi' ? 'Hạt Film 35mm Thực Thể' : '35mm Film Grain Scan'}
-                </span>
-                <span className="text-xs text-on-surface-variant">
-                  {language === 'vi' ? 'Quét hạt hữu cơ 4K' : 'Organic 4K stock scanning'}
-                </span>
-              </div>
-              <button
-                type="button"
-                onClick={() => setGrainSimulation(!grainSimulation)}
-                className={`neumorph-inset h-8 w-14 cursor-pointer rounded-full p-1 transition-colors ${
-                  grainSimulation ? 'bg-primary-container' : 'bg-surface-container-high'
+          {/* Switch 2: 35mm Grain Simulation */}
+          <div className="flex items-center justify-between py-1">
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-primary">
+                {language === 'vi' ? 'Hạt Film 35mm Thực Thể' : '35mm Film Grain Scan'}
+              </span>
+              <span className="text-xs text-on-surface-variant">
+                {language === 'vi' ? 'Quét hạt hữu cơ 4K' : 'Organic 4K stock scanning'}
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setGrainSimulation(!grainSimulation)}
+              className={`neumorph-inset h-8 w-14 cursor-pointer rounded-full p-1 transition-colors ${
+                grainSimulation ? 'bg-primary-container' : 'bg-surface-container-high'
+              }`}
+              aria-label="Chuyển đổi hạt film 35mm"
+            >
+              <div
+                className={`h-6 w-6 rounded-full bg-surface shadow-md transition-transform duration-200 ${
+                  grainSimulation ? 'translate-x-6' : 'translate-x-0'
                 }`}
-                aria-label="Chuyển đổi hạt film 35mm"
-              >
-                <div
-                  className={`h-6 w-6 rounded-full bg-surface shadow-md transition-transform duration-200 ${
-                    grainSimulation ? 'translate-x-6' : 'translate-x-0'
-                  }`}
-                />
-              </button>
-            </div>
+              />
+            </button>
+          </div>
 
-            {/* Interactive Search Input Field */}
-            <div className="pt-2">
-              <div className="relative flex w-full items-center">
-                <span className="material-symbols-outlined pointer-events-none absolute left-4 text-[20px] text-on-surface-variant">
-                  search
-                </span>
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
-                  placeholder={
-                    language === 'vi'
-                      ? 'Tìm kiếm tác phẩm, thông số camera...'
-                      : 'Search projects, camera specs...'
-                  }
-                  className="neumorph-inset h-[48px] w-full rounded-full bg-surface-container-low pl-12 pr-12 text-xs text-primary placeholder-on-surface-variant/60 focus:outline-none"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-4 cursor-pointer text-xs text-on-surface-variant hover:text-primary"
-                  >
-                    ✕
-                  </button>
-                )}
-              </div>
+          {/* Interactive Search Input Field */}
+          <div className="pt-2">
+            <div className="relative flex w-full items-center">
+              <span className="material-symbols-outlined pointer-events-none absolute left-4 text-[20px] text-on-surface-variant">
+                search
+              </span>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                placeholder={
+                  language === 'vi'
+                    ? 'Tìm kiếm tác phẩm, thông số camera...'
+                    : 'Search projects, camera specs...'
+                }
+                className="neumorph-inset h-[48px] w-full rounded-full bg-surface-container-low pl-12 pr-12 text-xs text-primary placeholder-on-surface-variant/60 focus:outline-none"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-4 cursor-pointer text-xs text-on-surface-variant hover:text-primary"
+                >
+                  ✕
+                </button>
+              )}
             </div>
           </div>
         </div>
