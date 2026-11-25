@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  }
+
+  body {
+    background-color: #faf9f4;
+    color: #1b1c19;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Material Symbols Font Setup */
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined' !important;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .neumorph-card {
+    box-shadow:
+      -10px -10px 24px rgba(255, 255, 255, 0.95),
+      12px 12px 30px rgba(186, 180, 166, 0.32);
+  }
+  .neumorph-card-subtle {
+    box-shadow:
+      -6px -6px 16px rgba(255, 255, 255, 0.9),
+      8px 8px 20px rgba(186, 180, 166, 0.22);
+  }
+  .neumorph-inset {
+    box-shadow:
+      inset 4px 4px 8px rgba(180, 174, 160, 0.38),
+      inset -3px -3px 7px rgba(255, 255, 255, 0.95);
+  }
+  .neumorph-inset-pill {
+    box-shadow:
+      inset 3px 3px 6px rgba(180, 174, 160, 0.32),
+      inset -3px -3px 6px rgba(255, 255, 255, 0.95);
+  }
+  .neumorph-btn-primary {
+    box-shadow:
+      0 10px 20px -2px rgba(15, 81, 50, 0.38),
+      0 4px 8px -1px rgba(15, 81, 50, 0.2);
+  }
+  .neumorph-btn-tactile {
+    box-shadow:
+      -4px -4px 10px #ffffff,
+      5px 5px 12px rgba(186, 180, 166, 0.35);
+  }
+  .neumorph-btn-tactile:active {
+    box-shadow:
+      inset 2px 2px 5px rgba(180, 174, 160, 0.35),
+      inset -2px -2px 5px #ffffff;
+  }
+  .neumorph-pill-active {
+    box-shadow:
+      -3px -3px 8px rgba(255, 255, 255, 0.95),
+      4px 4px 12px rgba(15, 81, 50, 0.35);
+  }
+
+  /* Hide scrollbar for clean horizontal reels */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
